@@ -37,6 +37,7 @@
 
 ### Posit Workbench
 
+- Rebranded Workbench from RStudio Workbench to Posit Workbench to match Posit Software, PBC's new branding terminology and iconography
 - Adds `-l` (long) option to `rserver-url`. When `/usr/lib/rstudio-server/bin/rserver-url -l <port number>` is executed within a VS Code or Jupyter session, the full URL where a user can view a server proxied at that port is displayed (rstudio-pro#3620)
 - Redesigned the session launch dialog from the homepage to show all session types at once (rstudio-pro#3646)
 - Enabled the Job Launcher with the Local Launcher by default in clean installations of Workbench (rstudio-pro#3571)
@@ -69,6 +70,7 @@
 
 - Workbench now checks for the `jupyter` binary in the `WORKBENCH_JUPYTER_PATH` environment variable (if present), then the `jupyter-exe` setting in `jupyter.conf`, and finally the `PATH`. This is allows more flexibility when launching sessions on Kubernetes or Slurm clusters. (rstudio/rstudio-pro#3942)
 - Fixed an issue where Workbench would not install the `jupyter` extension automatically if the configured `jupyter` path was a symlink to the actual install location. We now follow the symlink. (rstudio/rstudio-pro#3942)
+- Disabled `session-cull-timeout` in `jupyter.conf` by default for clean installations of Workbench to prevent possible data loss due to Jupyter storing all state in the browser (rstudio-pro#4010)
 
 #### Posit Workbench Jupyter Extension
 
@@ -103,3 +105,4 @@
 - Fixed an issue where `ssl-hsts-include-subdomains=1` would render Workbench non-functional. The setting now works as expected. (rstudio/rstudio-pro#3010)
 - Fixed an issue where the `suspend-session`, `suspend-all`, and `kill-all` subcommands of `rstudio-server` did not work when using the Launcher. (rstudio/rstudio-pro#4007)
 - Fixed conflicting keyboard shortcut for toggling screen reader support on macOS (#12339)
+- Fixed an issue where Workbench Job output would somtimes fail to show (rstudio-pro#3972)
